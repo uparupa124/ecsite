@@ -4,6 +4,6 @@ class Item < ApplicationRecord
   
   has_many :details, dependent: :destroy
   
-  has_many :cart_items, dependent:
+  has_many :cart_items, dependent: :destroy
   
 end

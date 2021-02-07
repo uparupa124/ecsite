@@ -18,7 +18,12 @@
           <li><%= link_to "注文履歴一覧", "/admin" %></li>
           <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete  %></li>
         
-         <% end %>
+        <% elsif customer_signed_in? %>
+         <li><%= link_to "新規登録", new_customer_registration_path %></li>
+         <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
+        <% else %>
+         <h1>aaaa</h1>
+        <% end %>
        </ul>
     </header>
     <%= yield %>
