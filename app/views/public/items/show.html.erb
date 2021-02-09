@@ -1,9 +1,14 @@
 <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
 
-<%= @item.name %>
-<%= @item.introduction %>
-<%= @item.price %>
+ <%= @item.name %>
+ <%= @item.introduction %>
+ <%= @item.price %>
 
-<%= f.select :amount, [["1","1"], ["2","2"], ["3","3"], ["4","4"], ["5","5"]] %>
-<%= f.submit "カートに入れる" %>
+ <% if customer_signed_in? %>
+  <%= f.hidden_field :customer_id, :value => current_customer.id %>
+ <% end %>
+  <%= hidden_field :item_id, :value => @item.id %>
+
+  <%= f.select :amount, [["1","1"], ["2","2"], ["3","3"], ["4","4"], ["5","5"]] %>
+  <%= f.submit "カートに入れる" %>
 <% end %>
