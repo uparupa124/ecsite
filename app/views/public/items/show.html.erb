@@ -1,4 +1,4 @@
-<%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
+<%= form_with model: @cart_item, local: true do |f| %>
 
  <%= @item.name %>
  <%= @item.introduction %>
@@ -6,8 +6,9 @@
 
  <% if customer_signed_in? %>
   <%= f.hidden_field :customer_id, :value => current_customer.id %>
+  <%= f.hidden_field :item_id, :value => @item.id %>
  <% end %>
-  <%= hidden_field :item_id, :value => @item.id %>
+  
 
   <%= f.select :amount, [["1","1"], ["2","2"], ["3","3"], ["4","4"], ["5","5"]] %>
   <%= f.submit "カートに入れる" %>
