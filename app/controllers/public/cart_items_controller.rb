@@ -3,16 +3,17 @@ class Public::CartItemsController < ApplicationController
  def index
   @numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
   @cart_item = current_customer.cart_items
+  @cart_items = CartItem.all
  end
 
  def create
    @cart_item = current_customer.cart_items.new(cart_item_params)
-   @cart_item.save
+   @cart_item.save!
    redirect_to cart_items_path
  end
  
  def update
-  @cart_item = current_customer.cart_items.find_by(cart_item_params)
+  @cart_item = CartItem.find_by(amount: params[:amount])
   @cart_item.update(cart_item_params)
   redirect_to cart_items_path
  end
