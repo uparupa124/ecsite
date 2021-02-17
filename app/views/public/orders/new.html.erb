@@ -1,0 +1,13 @@
+<h1>注文情報入力</h1>
+
+<%= form_with model:@order, local:true do |f| %>
+
+  <strong>支払方法</strong>
+    <%= f.check_box(:payment[checked_value = "1"]) %>
+     <span>クレジットカード</span>
+    <%= f.check_box(:payment[checked_value = "2"]) %>
+     <span>銀行振込</span>
+
+       <strong>お届け先</strong>
+
+<% end %>

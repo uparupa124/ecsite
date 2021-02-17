@@ -1,5 +1,5 @@
 <h1>ショッピングカート</h1>
- <%= form_with model: @cart_items, url: cart_item_path(@cart_item.id), local: true do |f| %>
+ <%= form_with model: @cart_item, url: cart_item_path(@cart_item), local: true, method: :PATCH do |f| %>
 　<table>
 　  <thead>
 　    <tr>
@@ -15,7 +15,7 @@
 　      <tr>
 　        <td><%= cart_item.item.name %></td>
 　        <td><%= (cart_item.item.price * 1.1).round %></td>
-　        <td><%= f.select :amount, options_for_select(@numbers, {selected: cart_item.amount} ) %><%= f.submit "変更" %></td>
+　        <td><%= f.select :amount, options_for_select([["1","1"], ["2","2"], ["3","3"], ["4","4"], ["5","5"]],{selected: cart_item.amount.to_i}) %><%= f.submit "変更" %></td>
 　        <td><%= (cart_item.item.price * 1.1 * cart_item.amount).round %></td>
 　        <!--<td>しますか?" %></td>-->
 　      </tr>

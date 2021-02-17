@@ -12,9 +12,14 @@ Rails.application.routes.draw do
  
  scope module: :public do
   root to: "homes#top"
+  root to: "orders#index"
+  root to: "addresses#index"
   get "/about" => "homes#about"
   resources :items, only:[:index, :show]
   resources :cart_items, only:[:index, :update, :destroy, :create]
+  resources :orders, only:[:new, :index, :show]
+  resources :addresses, only:[:index, :edit, :create, :update, :destroy]
  end
+ 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
