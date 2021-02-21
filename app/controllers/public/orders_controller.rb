@@ -8,6 +8,11 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
   end
   
+  def confirm
+    @order = Order.find(params[:id])
+    @cart_items = current_customer.cart_items
+  end
+  
   private
    def order_params
      params.require(:order).permit(:order_postal_code, :order_address, :order_name, :shipping, :total_amount, :payment, :order_telephone_number)

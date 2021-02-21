@@ -13,7 +13,7 @@ class Public::CartItemsController < ApplicationController
      new_amount = cart_item.amount + @cart_item.amount
      cart_item.update_attribute(:amount, new_amount)
      @cart_item.delete
-    endcd
+    end
    end
    @cart_item.save
    redirect_to cart_items_path
