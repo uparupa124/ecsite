@@ -6,6 +6,6 @@
 
 <h1>新着商品</h1>
 <% @item.each do |item| %>
- <%= item.name %>
+ <%= link_to item.name, item_path(item) %>
  <%= item.price %>
 <% end %>

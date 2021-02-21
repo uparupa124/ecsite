@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "/about" => "homes#about"
   resources :items, only:[:index, :show]
   resources :cart_items, only:[:index, :update, :destroy, :create]
+  delete "cart_items" => "cart_items#destroy_all", as: "destroy_all_cart_items"
   resources :orders, only:[:new, :index, :show]
   resources :addresses, only:[:index, :edit, :create, :update, :destroy]
  end
