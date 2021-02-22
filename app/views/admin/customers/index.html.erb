@@ -12,7 +12,7 @@
 　  　  <% @customer.each do |customer| %>
 　  　   <tr>
 　  　    <td><%= customer.id %></td>
-　  　    <td><%=link_to customer.first_name + customer.last_name, admin_customer_path(customer.id) %></td>
+　  　    <td><%= link_to customer.first_name, admin_customer_path(customer.id) %></td>
 　  　    <td><%= customer.email %></td>
 　  　    <td>ステータス</td>
 　  　   </tr>

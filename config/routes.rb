@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
  
  
-  devise_for :customers
+  devise_for :customers, :path_names => {:edit => "edit2"}
   devise_for :admins,path: "admin"
  namespace :admin do
   root to: "homes#top"
@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   resources :orders, only:[:new, :index, :show]
   post "orders/confirm" => "orders#confirm"
   resources :addresses, only:[:index, :edit, :create, :update, :destroy]
+  get "customers" => "customers#show"
+  get "customers/edit" => "customers#edit", as: "edit_customer"
+  get "customers/withdrawal" => "customers#withdrawal"
  end
  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
