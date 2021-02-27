@@ -14,9 +14,17 @@ class Public::CustomersController < ApplicationController
   redirect_to "/customers"
  end
  
- def withdrawal
-  
+ def unsubscribe
+  @customer = current_customer
  end
+ 
+ def withdrawal
+  @customer = current_customer
+  @customer.update(is_active: "Invalid")
+  reset_session
+  redirect_to root_path
+ end
+
 
  private
   def customer_params

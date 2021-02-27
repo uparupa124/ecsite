@@ -1,0 +1,35 @@
+<h1>注文情報確認</h1>
+　<table>
+　  <thead>
+　    <tr>
+　      <th>商品名</th>
+　      <th>単価(税込)</th>
+　      <th>数量</th>
+　      <th>小計</th>
+　    </tr>
+　  </thead>
+　
+　   <% @cart_items.each do |cart_item| %>
+　    <tbody>
+　      <tr>
+　        <td><%= cart_item.item.name %></td>
+　        <td><%= (cart_item.item.price * 1.1).round %></td>
+　        <td><%= cart_item.amount %></td>
+　        <td><%= (cart_item.item.price * 1.1 * cart_item.amount).round %></td>
+　      </tr>
+　    </tbody>
+　   <% end %>
+　</table>
+　
+　
+　<strong>支払方法</strong>
+　　
+   <%= @payment %>
+   
+   
+  <strong>配送先</strong>
+  　〒<%= @order_postal_code %>
+  　<%= @order_address %>
+  　<%= @order_name %>
+  　
+  　

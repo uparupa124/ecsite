@@ -18,12 +18,14 @@ Rails.application.routes.draw do
   resources :items, only:[:index, :show]
   resources :cart_items, only:[:index, :update, :destroy, :create]
   delete "cart_items" => "cart_items#destroy_all", as: "destroy_all_cart_items"
-  resources :orders, only:[:new, :index, :show]
-  post "orders/confirm" => "orders#confirm"
+  resources :orders, only:[:new, :index]
+  post "orders/confirm" => "orders#confirm", as: "confirm_orders"
+  
   resources :addresses, only:[:index, :edit, :create, :update, :destroy]
   get "customers" => "customers#show"
   get "customers/edit" => "customers#edit", as: "edit_customer"
-  get "customers/withdrawal" => "customers#withdrawal"
+  get "customers/unsubscribe" => "customers#unsubscribe"
+  patch "customers/withdrawal" => "customers#withdrawal", as: "withdrawal_customer"
  end
  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
