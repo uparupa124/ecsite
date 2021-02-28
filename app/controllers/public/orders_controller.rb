@@ -8,10 +8,13 @@ class Public::OrdersController < ApplicationController
   
   def create
     @order = Order.new(order_params)
+    @order.save!
+    redirect_to complete_orders_path
   end
   
   def confirm
     @order = Order.new(order_params)
+    @detail = Detail.new(detail_params)
     @cart_items = current_customer.cart_items
     
     
@@ -37,8 +40,15 @@ class Public::OrdersController < ApplicationController
      end
   end
   
+  def complete
+  end
+  
   private
    def order_params
      params.require(:order).permit(:order_postal_code, :order_address, :order_name, :shipping, :total_amount, :payment, :order_telephone_number)
+   end
+   
+   def detail_params
+    # params.require(:detail).permit(:order_price, :order_tax_price, :amount, :item_id, :order_id)
    end
 end
