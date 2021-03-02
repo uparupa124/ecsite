@@ -7,16 +7,15 @@ class Public::OrdersController < ApplicationController
   end
   
   def create
-    @order = Order.new(order_params)
-    @order.save!
+    @order = current_customer.orders.create(order_params)
+    
     redirect_to complete_orders_path
   end
   
   def confirm
-    @order = Order.new(order_params)
-    @detail = Detail.new(detail_params)
+    @order = current_customer.orders.new(order_params)
+    @order.details.build
     @cart_items = current_customer.cart_items
-    
     
     if params[:order][:payment] == "1"
       @payment = "クレジットカード"
@@ -45,7 +44,7 @@ class Public::OrdersController < ApplicationController
   
   private
    def order_params
-     params.require(:order).permit(:order_postal_code, :order_address, :order_name, :shipping, :total_amount, :payment, :order_telephone_number)
+     params.require(:order).permit(:order_postal_code, :order_address, :order_name, :shipping, :total_amount, :payment, :order_telephone_number, details_attributes: [:order_price, :order_tax_price, :amount, :item_id, :order_id])
    end
    
    def detail_params
