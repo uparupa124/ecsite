@@ -1,6 +1,7 @@
 <h1>商品一覧</h1>
 
 <% @item.each do |item| %>
+ <%= attachment_image_tag item, :image, :fill, 100, 100, format:"jpeg" %>
  <%= link_to item.name, item_path(item) %>
  <%= item.price %>
 <% end %>
