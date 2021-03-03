@@ -1,29 +1,29 @@
 class Public::OrdersController < ApplicationController
-  
+
   def new
     @order = Order.new
     @current_customer = current_customer
     @current_customer_address = current_customer.addresses
   end
-  
+
   def create
     @order = Order.new(order_params)
     @order.save!
     redirect_to complete_orders_path
   end
-  
+
   def confirm
     @order = Order.new(order_params)
     @detail = Detail.new(detail_params)
     @cart_items = current_customer.cart_items
-    
-    
+
+
     if params[:order][:payment] == "1"
       @payment = "クレジットカード"
     elsif params[:order][:payment] == "2"
       @payment = "銀行振込"
     end
-    
+
      if params[:order][:address_option] == "0"
         @order_postal_code = current_customer.postal_code
         @order_address = current_customer.address
@@ -39,15 +39,15 @@ class Public::OrdersController < ApplicationController
         @order_name = @order.order_name
      end
   end
-  
+
   def complete
   end
-  
+
   private
    def order_params
      params.require(:order).permit(:order_postal_code, :order_address, :order_name, :shipping, :total_amount, :payment, :order_telephone_number)
    end
-   
+
    def detail_params
     # params.require(:detail).permit(:order_price, :order_tax_price, :amount, :item_id, :order_id)
    end
