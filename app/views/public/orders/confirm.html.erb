@@ -48,7 +48,6 @@
   　<%= @order_name %>
   　
   　<%= form_with model: @order, local: true do |f| %>
-  　
   　    <%= f.hidden_field :customer_id, :value => current_customer.id %>
        <%= f.hidden_field :order_postal_code, :value => @order_postal_code %>
        <%= f.hidden_field :order_address, :value => @order_address %>
@@ -62,14 +61,7 @@
      <% end %>
        <%= f.hidden_field :payment, :value => @payment %>
        <%= f.hidden_field :total_amount, :value => @sum %>
-        <%= f.fields_for :details do |detail| %>
-        
-        <%= f.hidden_field :order_price, :value => (@sum / 1.1).round %>
-        <%= f.hidden_field :order_tax_price, :value => @sum %>
-         <% @cart_items.each do |cart_item| %>
-        <%= f.hidden_field :item_id, :value => cart_item.item.id %>
-        <%= f.hidden_field :amount, :value => cart_item.amount %>
-         <% end %>
-        <% end %>
+       
+       
        <%= f.submit "注文を確定する" %>
     <% end %>

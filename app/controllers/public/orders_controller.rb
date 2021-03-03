@@ -7,8 +7,21 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    @order = current_customer.orders.create(order_params)
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    @order.save
     
+    cart_items = current_customer.cart_items
+    cart_items.each do |cart_item|
+      detail = Detail.new
+      detail.item_id = cart_item.item_id
+      detail.order_id = @order.id
+      detail.order_price = cart_item.item.price
+      detail.order_tax_price = cart_item.item.price * 1.1
+      detail.amount = cart_item.amount
+      detail.save
+    end
+    current_customer.cart_items.destroy_all
     redirect_to complete_orders_path
   end
 
@@ -44,7 +57,7 @@ class Public::OrdersController < ApplicationController
 
   private
    def order_params
-     params.require(:order).permit(:order_postal_code, :order_address, :order_name, :shipping, :total_amount, :payment, :order_telephone_number, details_attributes: [:order_price, :order_tax_price, :amount, :item_id, :order_id])
+     params.require(:order).permit(:order_postal_code, :order_address, :order_name, :shipping, :total_amount, :payment, :order_telephone_number)
    end
 
    def detail_params
