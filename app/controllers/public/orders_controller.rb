@@ -55,6 +55,20 @@ class Public::OrdersController < ApplicationController
   def complete
   end
 
+  def index
+    @orders = current_customer.orders
+  end
+  
+  def show
+    @order = Order.find(params[:id])
+    if @order.payment == 1
+      @payment = "クレジットカード"
+    elsif @order.payment == 2
+      @payment = "銀行振込"
+    end
+    @details = @order.details
+  end
+
   private
    def order_params
      params.require(:order).permit(:order_postal_code, :order_address, :order_name, :shipping, :total_amount, :payment, :order_telephone_number)
