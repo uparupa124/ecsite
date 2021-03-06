@@ -12,19 +12,21 @@
     </tr>
   </thead>
   　<tbody>
-  　 <% @orders.each do |orders| %>
+  　 <% @orders.each do |order| %>
   　   <tr>
-  　     <td><%= orders.created_at.strftime("%Y/%m/%d") %></td>
-  　     <td><%= orders.order_postal_code %></br>
-  　         <%= orders.order_address %></br>
-  　         <%= orders.order_name %>
+  　     <td><%= order.created_at.strftime("%Y/%m/%d") %></td>
+  　     <td><%= order.order_postal_code %></br>
+  　         <%= order.order_address %></br>
+  　         <%= order.order_name %>
   　     </td>
   　     <td>
-  　        
+  　      <% order.details.each do |detail| %>
+  　     <li><%= detail.item.name %></li>
+         <% end %>
   　     </td>
-  　     <td><%= orders.total_amount + orders.shipping %></td>
+  　     <td><%= order.total_amount + order.shipping %></td>
   　     <td></td>
-  　     <td><%= link_to "表示する", order_path(orders) %></td>
+  　     <td><%= link_to "表示する", order_path(order) %></td>
   　   </tr>
   　 <% end %>
   　</tbody>
