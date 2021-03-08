@@ -6,15 +6,18 @@
     <tbody>
      <tr>
        <td>名前</td>
+       
     　   <td>
+    　   
     　 　 <div class="field">
               <%= f.label :"(姓)" %>
+              &nbsp;&thinsp;&thinsp;&thinsp;
               <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
          </div>
         </td>
           <td>
         　  <div class="field">
-               <%= f.label :"(名)" %>
+               &nbsp;&nbsp;&nbsp;&nbsp;<%= f.label :"(名)" %>
                <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
            </div>
      </tr>
@@ -72,7 +75,7 @@
                       <td>
                        <div class="field">
                          <% if @minimum_password_length %>
-                         <em>(<%= @minimum_password_length %> characters minimum)</em>
+                         
                          <% end %>
                          <%= f.password_field :password, autocomplete: "new-password" %>
                        </div>

@@ -1,8 +1,8 @@
-<h1>ショッピングカート</h1>
+<h3><span class="bg-light">ショッピングカート</span></h3>
 <%= link_to "カートを空にする", cart_items_path(@cart_item), method: :delete, "data-confirm" => "本当に空にしますか？" %>
-　<table>
+　<table border>
 　  <thead>
-　    <tr>
+　    <tr class="bg-light">
 　      <th>商品名</th>
 　      <th>単価(税込)</th>
 　      <th>数量</th>
