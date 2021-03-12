@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
  
  
-  devise_for :customers, :path_names => {:edit => "edit2"}
+  devise_for :customers, controllers: {
+   registrations:"public/customers"
+  }
   devise_for :admins,path: "admin"
  namespace :admin do
   root to: "homes#top"
   resources :genres, only:[:index, :create, :edit, :update]
   resources :items, only:[:new, :create, :index, :show, :edit, :update]
-  resources :customers, only:[:index, :show, :edit, :update]
+  resources :customers, only:[:index, :show, :update, :edit]
   resources :orders, only:[:show]
  end
  

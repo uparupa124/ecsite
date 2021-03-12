@@ -33,6 +33,14 @@
                   <td>メールアドレス</td>
                   <td><%= f.email_field :email %></td>
                 </tr>
+                  <tr>
+                    <td>会員ステータス</td>
+                    <td><%= f.radio_button :is_active, value = "Available" %>
+                        <%= f.label :is_active, "有効" %>
+                        <%= f.radio_button :is_active, value = "Invalid" %>
+                        <%= f.label :is_active, "退会" %>
+                    </td>
+                    </tr>
    </tbody>
  </table>
   
