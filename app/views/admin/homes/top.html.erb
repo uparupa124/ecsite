@@ -1,11 +1,14 @@
-<h1>注文履歴一覧</h1>
- <table>
+<div class="container">
+ <div class="d-flex align-items-center" style="width:100%; height:100px;">
+  <h3><span class="bg-light">注文履歴一覧</span></h3>
+ </div>
+ <table class="table">
    <thead>
-     <tr>
-       <td>購入日時</td>
-       <td>購入者</td>
-       <td>注文個数</td>
-       <td>注文ステータス</td>
+     <tr class="bg-light">
+       <td><strong>購入日時</strong></td>
+       <td><strong>購入者</strong></td>
+       <td><strong>注文個数</strong></td>
+       <td><strong>注文ステータス</strong></td>
      </tr>
    </thead>
    　<tbody>
@@ -13,9 +16,14 @@
        <tr>
          <td><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), admin_order_path(order) %></td>
          <td><%= order.customer.first_name + order.customer.last_name %></td>
-         <td></td>
+             <% @total = 0 %>
+             <% order.details.each do |detail| %>
+             <% @total += detail.amount %>
+             <% end %>
+         <td><%= @total %></td>
          <td></td>
        </tr>
         <% end %>
      </tbody>
  </table>
+ </div>

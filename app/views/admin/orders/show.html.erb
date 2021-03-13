@@ -1,7 +1,10 @@
-<h1>注文履歴詳細</h1>
-
- <table>
-   <tbody>
+<div class="container">
+ <div class="d-flex align-items-center" style="width:100%; height:100px;">
+   <h3><span class="bg-light">注文履歴詳細</span></h3>
+ </div>
+  <div class="ml-5">
+   <table>
+    <tbody>
      <tr>
        <td><strong>購入者</strong></td>
        <td><%= @order.order_name %></td>
@@ -12,8 +15,11 @@
        </tr>
          <tr>
            <td><strong>配送先</strong></td>
-           <td>〒<%= @order.order_postal_code %>　<%= @order.order_address %></br>
-                   <%= @order.order_name %>
+           <td>
+            <div class="list-unstyled">
+               <li>〒<%= @order.order_postal_code %>　<%= @order.order_address %></li>
+               <li><%= @order.order_name %></li>
+            </div>
            </td>
          </tr>
            <tr>
@@ -24,18 +30,21 @@
                <td><strong>注文ステータス</strong></td>
                <td></td>
              </tr>
-   </tbody>
- </table>
-   <table>
-    <thead>
-     <tr>
-      <td><strong>商品名</strong></td>
-      <td><strong>単価(税込)</strong></td>
-      <td><strong>数量</strong></td>
-      <td><strong>小計</strong></td>
-      <td><strong>製作ステータス</strong></td>
-     </tr>
-    </thead>
+    </tbody>
+   </table>
+ </div>
+  
+   <div class="d-inline-block m-5">
+    <table class="table">
+     <thead>
+      <tr class="bg-light">
+       <td><strong>商品名</strong></td>
+       <td><strong>単価(税込)</strong></td>
+       <td><strong>数量</strong></td>
+       <td><strong>小計</strong></td>
+       <td><strong>製作ステータス</strong></td>
+      </tr>
+     </thead>
        <tbody>
           <% @details.each do |detail| %>
          <tr>
@@ -43,12 +52,14 @@
            <td><%= (detail.item.price * 1.1).round %></td>
            <td><%= detail.amount %></td>
            <td><%= (detail.item.price * 1.1 * detail.amount).round %></td>
+           <td></td>
          </tr>
           <% end %>
        </tbody>
-   </table>
-   
-     <table>
+    </table>
+   </div>
+     <div class="d-inline-block m-5">
+      <table>
        <tbody>
         <tr>
           <td><strong>商品合計</strong></td>
@@ -63,4 +74,7 @@
               <td><%= @order.total_amount + @order.shipping %>円</td>
             </tr>
        </tbody>
-     </table>
+      </table>
+     </div>
+  
+</div>

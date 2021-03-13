@@ -1,19 +1,41 @@
-<h1>商品編集</h1>
+<div class="container">
+  <div class="d-flex align-items-center" style="width:100%; height:100px;">
+    <h3><span class="bg-light">商品編集</span></h3>
+  </div>
 <%= form_with model:@item, url: admin_item_path, local: true do |f| %>
 
-<h4>商品画像</h4>
- 　<!--attachment付け足す-->
-  <%= f.attachment_field :image %>
- 　<h4>商品名</h4>
-　<%= f.text_field :name %>
-　  <h4>商品説明</h4>
-　<%= f.text_area :introduction %>
-　　 <h4>ジャンル</h4>
-　<!--ジャンル項目付け足す-->
-  <%= f.collection_select :genre_id, Genre.all, :id, :name, { prompt: "選択してください" } %>
-　　　<h4>税抜価格</h4>
-　<%= f.text_field :price %>円
-　     <h4>販売ステータス</h4>
-　   <!--販売ステータス付け足す-->
-　<%= f.submit "変更を保存" %>
+
+<table>
+ <tbody>
+   <tr>
+    <td>商品画像</td>
+  　 <!--attachment付け足す-->
+    <td><%= f.attachment_field :image %></td>
+   </tr>
+     <tr>
+       <td>商品名</td>
+　     <td><%= f.text_field :name %></td>
+　   </tr>
+　     <tr>
+　      <td class="align-top">商品説明</td>
+　      <td><%= f.text_area :introduction %></td>
+　     </tr>
+　       <tr>
+　　       <td>ジャンル</td>
+　         <!--ジャンル項目付け足す-->
+           <td><%= f.collection_select :genre_id, Genre.all, :id, :name, { prompt: "選択してください" } %></td>
+         </tr>
+           <tr>
+　　　       <td>税抜価格</td>
+　           <td><%= f.text_field :price %>円</td>
+　         </tr>
+　           <tr>
+　             <td>販売ステータス</td>
+　             <!--販売ステータス付け足す-->
+　             <td></td>
+　</tbody>
+</table>
+　<!--<%= f.submit "変更を保存" %>-->
+　<input type="submit" class="btn btn-success" value="変更を保存">
 <% end %>
+</div>
