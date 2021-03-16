@@ -2,10 +2,19 @@ Rails.application.routes.draw do
  
  
   devise_for :customers, controllers: {
-   registrations:"public/customers"
+   registrations: "public/customers",
+   sessions: "customers/sessions",
+   passwords: "customers/passwords"
   }
-  devise_for :admins,path: "admin"
+  devise_for :admin,controllers: {
+   sessions: "admins/sessions",
+   passwords:     "admins/passwords",
+   registrations: "admins/registrations",
+  }
+  
+ 
  namespace :admin do
+  # get "sign_in", :to => "users/sessions#new"
   root to: "homes#top"
   resources :genres, only:[:index, :create, :edit, :update]
   resources :items, only:[:new, :create, :index, :show, :edit, :update]

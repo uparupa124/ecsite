@@ -2,10 +2,9 @@
   <div class="d-flex align-items-center" style="width:100%; height:100px;">
     <h3><span class="bg-light">会員情報編集</span></h3>
   </div>
-　
-　 <table>
+　 <%= form_with model: @customer, url: "/customers", local: true, method: :PATCH do |f| %>
+　  <table>
 　   <tbody>
-　     <%= form_with model: @customer, url: "/customers", local: true, method: :PATCH do |f| %>
 　      <tr>
 　       <td>氏名</td>
 　       <td><%= f.text_field :first_name %></td>
@@ -33,7 +32,7 @@
 　                 <td><%= f.text_field :email %></td>
 　               </tr>
 　   </tbody>
-　 </table>
+　  </table>
 　  <div class="mx-auto text-center">
 　   <input type="submit" class="btn btn-success" value="編集内容を保存">
 　<% end %>

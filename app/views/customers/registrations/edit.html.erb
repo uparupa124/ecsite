@@ -2,10 +2,10 @@
   <div class="d-flex align-items-center" style="width:100%; height:100px;">
     <h3><span class="bg-light">会員情報編集</span></h3>
   </div>
-　
+　<%= form_with model: @customer, url: "/customers", local: true do |f| %>
 　 <table>
 　   <tbody>
-　     <%= form_with model: @customer, url: "/customers", local: true do |f| %>
+　     
 　      <tr>
 　       <td>氏名</td>
 　       <td><%= f.text_field :first_name %></td>
